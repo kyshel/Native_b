@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kyshel.native_b">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.front" />
+    <uses-feature android:name="android.hardware.camera.front.autofocus" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        >
+        <activity android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SaltActivity"
+            android:label="manifest_label_salt"
+            android:parentActivityName=".ListSamplesActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity"
+                />
+        </activity>
+
+
+        <activity
+            android:name=".ListSamplesActivity"
+            android:parentActivityName=".ListSamplesActivity" />
+        <activity
+            android:name=".Tutorial1Activity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_image_manipulations"
+            android:parentActivityName=".ListSamplesActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity" />
+        </activity>
+        <activity
+            android:name=".Tutorial2Activity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_tutorial2"
+            android:parentActivityName=".ListSamplesActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity" />
+        </activity>
+        <activity
+            android:name=".Tutorial3Activity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_tutorial3"
+            android:parentActivityName=".ListSamplesActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity" />
+        </activity>
+        <activity
+            android:name=".ImageManipulationsActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_image_manipulations"
+            android:parentActivityName=".ListSamplesActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity" />
+        </activity>
+        <activity
+            android:name=".ColorBlobDetectionActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_color_blob_detection"
+            android:parentActivityName=".ListSamplesActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity" />
+        </activity>
+        <activity
+            android:name=".FaceDetectionActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_face_detection"
+            android:parentActivityName=".ListSamplesActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity" />
+        </activity>
+        <activity
+            android:name=".Puzzle15Activity"
+            android:label="@string/title_activity_puzzle15"
+            android:parentActivityName=".ListSamplesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kyshel.native_b.ListSamplesActivity" />
+        </activity>
+
+
+    </application>
+
+</manifest>
