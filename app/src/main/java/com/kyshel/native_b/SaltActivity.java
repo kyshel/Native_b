@@ -185,8 +185,9 @@ public class SaltActivity extends AppCompatActivity implements CameraBridgeViewB
         }
 
 
-        nFrame2Gray(matSrc.getNativeObjAddr(), matDst.getNativeObjAddr());
-        return matDst;
+        //nFrame2Gray(matSrc.getNativeObjAddr(), matDst.getNativeObjAddr());
+        nProcess(matSrc.getNativeObjAddr(),matDst.getNativeObjAddr());
+        return matSrc;
     }
 
     // this func not work

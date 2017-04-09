@@ -131,7 +131,7 @@ Java_com_kyshel_native_1b_SaltActivity_nProcess(JNIEnv *env, jobject instance, j
     Mat& mSrc = *(Mat*)matAddrSrc;
     Mat& mDst = *(Mat*)matAddrDst;
 
-    saveMatFrameToImage(mSrc);
+    //saveMatFrameToImage(mSrc);
 
     	//Detect
 	std::vector<cv::Rect> letterBBoxes1 = detectLetters(mSrc);
