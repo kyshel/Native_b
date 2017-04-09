@@ -1,31 +1,36 @@
 package com.kyshel.native_b;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.kyshel.native_b.R;
-
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.InputStreamEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 public class SaltActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
 
@@ -164,20 +169,46 @@ public class SaltActivity extends AppCompatActivity implements CameraBridgeViewB
 //        return matDst;
 //    }
 
-
+    private Mat matTemp;
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat matSrc = inputFrame.rgba();
+        Mat matTemp = inputFrame.rgba();
+
 
         if (buttonTouched == 1){
             Log.i(TAG,"buttonTouched = 1 now ");
-            //captureFrame(matSrc);
+            captureFrame(matSrc);
             nProcess(matSrc.getNativeObjAddr(),matDst.getNativeObjAddr());
+            //postImage("/1/aaabbb.jpg","http://115.159.55.151/native/a.php");
             buttonTouched = 0;
         }
 
 
         nFrame2Gray(matSrc.getNativeObjAddr(), matDst.getNativeObjAddr());
         return matDst;
+    }
+
+    // this func not work
+    private void postImage(String imagePath,String serverPath){
+        String url = serverPath;
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
+                imagePath);
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+
+            HttpPost httppost = new HttpPost(url);
+
+            InputStreamEntity reqEntity = new InputStreamEntity(
+                    new FileInputStream(file), -1);
+            reqEntity.setContentType("binary/octet-stream");
+            reqEntity.setChunked(true); // Send in multiple parts if needed
+            httppost.setEntity(reqEntity);
+            HttpResponse response = httpclient.execute(httppost);
+            dd(response.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void captureFrame(Mat matSrc) {
@@ -188,6 +219,7 @@ public class SaltActivity extends AppCompatActivity implements CameraBridgeViewB
         // convert to bitmap:
         final Bitmap bm = Bitmap.createBitmap(matSrc.cols(), matSrc.rows(),Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(matSrc, bm);
+        //saveBitmap(bm,"");
 
         // find the imageview and draw it!
         final ImageView iv = (ImageView) findViewById(R.id.imageView);
@@ -201,6 +233,24 @@ public class SaltActivity extends AppCompatActivity implements CameraBridgeViewB
 
 
         dd("saveFrame end...");
+    }
+    private void saveBitmap(Bitmap bitmapInstance, String savePath){
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream("/mnt/sdcard/1/ccc.png");
+            bitmapInstance.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+            // PNG is a lossless format, the compression factor (100) is ignored
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

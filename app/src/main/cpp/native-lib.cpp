@@ -94,7 +94,9 @@ Java_com_kyshel_native_1b_SaltActivity_nFrame2Gray(JNIEnv *env, jobject instance
 
 int saveMatFrameToImage(Mat mSrc)
 {
-    imwrite( "/mnt/sdcard/1/aaabbb.jpg", mSrc );
+    Mat rgbMatSrc;
+    cvtColor(mSrc,rgbMatSrc,COLOR_BGR2RGB);
+    imwrite( "/mnt/sdcard/1/aaabbb.jpg", rgbMatSrc );
     return 1;
 }
 
