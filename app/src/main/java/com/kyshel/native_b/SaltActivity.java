@@ -177,8 +177,9 @@ public class SaltActivity extends AppCompatActivity implements CameraBridgeViewB
 
         if (buttonTouched == 1){
             Log.i(TAG,"buttonTouched = 1 now ");
-            captureFrame(matSrc);
             nProcess(matSrc.getNativeObjAddr(),matDst.getNativeObjAddr());
+            captureFrame(matSrc);
+
             //postImage("/1/aaabbb.jpg","http://115.159.55.151/native/a.php");
             buttonTouched = 0;
         }

@@ -3,7 +3,8 @@
 Aims to identify marked words with phone camera in real time
 
 ## Status
-Developing...
+Developing...    
+More info see [https://github.com/kyshel/track](https://github.com/kyshel/track)
 
 ## Require
 - change Line8 in CMakeLists.txt
