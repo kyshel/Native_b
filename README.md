@@ -21,6 +21,7 @@ BSD
 - 170407: native finish; all official sample passed, except camera calibration; get exception from dead process
 - 170408: get mat from frame , but rgba method get wrong color
 - 170409: save image from camera frame, convert right color in native method; manipulating vs2017 focusing on c++
+- 170410: testing opencv samples
 
 ## Wait
 core module [dig-word](https://github.com/kyshel/dig-word) need
